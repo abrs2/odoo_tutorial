@@ -8,6 +8,7 @@
             <tree string="Channel">
                 <field name="name"/>
                 <field name="postcode"/>
+                <field name="tag_ids"/>
                 <field name="bedrooms"/>
                 <field name="living_area"/>
                 <field name="expected_price"/>
@@ -31,6 +32,7 @@
                             <field name="tag_ids" widget="many2many_tags"/>
                         </a>
                     </div>
+                
                     <group>
                         <group>
                             <field name="property_type_id"/>
@@ -88,6 +90,7 @@
             <search string="Estate Property">
                 <field name="name" string="Property Name"/>
                 <field name="postcode"/>
+                <field name="tag_ids"/>
                 <field name="expected_price"/>
                 <field name="bedrooms"/>
                 <field name="living_area"/>
@@ -96,6 +99,7 @@
                 <filter string="Available" name="state" domain="['|',('state', '=', 'new'), ('state', '=', 'offer received')]"/>
                 <group expand="1" string="Group By">
                     <filter string="Postcode" name="postcode" context="{'group_by':'postcode', 'residual_visible':True}"/>
+                    <!--<filter string="Property Tags" name="tag_ids" context="{'group_by':'tag_ids', 'residual_visible':True}"/> -->
                 </group>
             </search>
         </field>

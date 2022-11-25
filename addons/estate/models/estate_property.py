@@ -19,7 +19,7 @@ class EstateProperty(models.Model):
     _name = 'estate.property'
     _description = "CRM Estate Property"
 
-    name = fields.Char('Property Name',default="Unknown",required=True,translate=True)
+    name = fields.Char(string='Property Name',default="Unknown",required=True,translate=True)
     tag_ids = fields.Many2many("estate.property.tag",string="Property Tags")
     property_type_id = fields.Many2one("estate.property.type",string="Property Type")
     description =fields.Text('Description')
@@ -52,16 +52,23 @@ class EstateProperty(models.Model):
 
     offer_ids = fields.One2many("estate.property.offer","property_id")
 
-    best_price= fields.Float("Best Price",compute = "_compute_best_price",readonly=True)
+    best_price= fields.Float("Best Price",compute="_compute_best_price",readonly=True)
 
     @api.depends("living_area","garden_area")
     def _compute_area(_self):
         for rec in _self:
             rec.total_area = rec.garden_area+rec.living_area
 
-    @api.depends('offer_ids.price')
+    @api.depends('offer_ids')
     def _compute_best_price(self):
         for record in self:
-            record.best_price = max(offer.price for offer in record.offer_ids)
+            best_price=0
+            for offer in record.offer_ids:
+                if offer.price>best_price:
+                    best_price= offer.price
+            
+            record.best_price = best_price
+
+            
             
 
