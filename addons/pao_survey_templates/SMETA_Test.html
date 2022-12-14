@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+</head>
+
+<body>
+    <div style="margin:0px;padding: 0px;">
+        <font class="text-black"
+            style="font-family:Roboto, &quot;Odoo Unicode Support Noto&quot;, sans-serif;font-size: small; max-width: 100%; overflow-x: auto;">
+            <p>
+                Buen día&nbsp;<b>${object.partner_id.name or ''} </b><br><br>Un gusto
+                saludarte, esta notificación es para confirmar la fecha de auditoría conforme los siguientes datos
+                proporcionados en el formato de solicitud de auditoría <b> SMETA (Auditoría de Comercio Ético para los
+                    Miembros de Sedex).</b>
+                <br><br>
+                </p>
+
+            <p>Auditoría SMETA V6.1, basada en el Código ETI (Iniciativa de Código Ético) y Ley Local.<br><br></p>
+
+
+            <div style="display:table;">
+                <div style="display:table-header-group;">
+                    <div style="display:table-row;">
+                        <div style="display:table-cell;">
+                        </div>
+                        <div style="display:table-cell;">
+                        </div>
+                    </div>
+                </div>
+
+                % for line in object.purchase_order_id:
+                % for orderline in line.order_line:
+                <div style="display:table-row;">
+                    <div style="display:table-cell;">
+                        <b>Sitio: </b>
+                    </div>
+                </div>
+                <div style="display:table-row;">
+                    <div style="display:table-cell;">
+                        <b>Fecha de Auditoría: </b>${orderline.service_start_date or ''}
+                    </div>
+                </div>
+                <div style="display:table-row;">
+                    <div style="display:table-cell;">
+                        <b>Tipo de auditoría solicitada: </b>${orderline.registrynumber_id.type_of_audit or ''}
+                    </div>
+                </div>
+                <div style="display:table-row;">
+                    <div style="display:table-cell;">
+                        <b>Alcance de auditoría: </b>${orderline.registrynumber_id.audit_scope or ''}
+                    </div>
+                </div>
+
+                <div style="display:table-row;">
+                    <div style="display:table-cell;">
+                        <b>Total de días: </b>${orderline.registrynumber_id.audit_duration or ''}
+                    </div>
+                </div>
+                <div style="display:table-row;">
+                    <div style="display:table-cell;">
+                        <b>Ubicación del sitio (s):</b>
+                    </div>
+                </div>
+                % endfor
+                <div style="display:table-row;">
+                    <div style="display:table-cell;">
+                        <br>
+                        <b>Auditor: </b>
+                        % if line.partner_id:
+                        ${line.partner_id.name}
+                        % endif
+                        &nbsp;
+                        <br>
+                    </div>
+                </div>
+                <div style="display:table-row;">
+                    <div style="display:table-cell;">
+                        <b>Correo: </b>${line.partner_id.email or ''}
+                    </div>
+                </div>
+                <div style="display:table-row;">
+                    <div style="display:table-cell;">
+                        <b>Teléfono: </b>${line.partner_id.mobile or ''}
+                    </div>
+                </div>
+                % endfor
+
+                <br>
+
+                <p><b>Por favor mantener disponibles al personal clave de la administración y a los trabajadores del
+                        sitio
+                        para ser entrevistados conforme el muestreo correspondiente.</b></p>
+                <br>
+
+                <p><b>Como personal clave se entiende a:</b> Contacto principal, responsable de Salud y Seguridad
+                    Ocupacional, Recursos Humanos entre otros que tengan conocimiento o sean responsables de la
+                    auditoría
+                    SMETA. Estas personas, siempre que sea posible deben asistir a la reunión de apertura y cierre junto
+                    con
+                    cualquier representante sindical y/o de los trabajadores.</p>
+                <br>
+                <p>Conforme la Guía de Buenas Prácticas SMETA, el auditor debe tener acceso para realizar entrevistas en
+                    un
+                    lugar privado, favor de proporcionarlo.</p>
+                <br>
+                <p><b>SOLO para auditorias de seguimiento Parcial,</b> por favor encuentre adjunto el CAPR anterior para
+                    consulta de los hallazgos previos. </p>
+
+                <br>
+
+                <p style="padding:0px;font-size: 13px;">
+                    <font style="background-color:rgb(255, 255, 0);" class="text-black"><span
+                            style="font-family:Roboto, &quot;Odoo Unicode Support Noto&quot;, sans-serif;font-size: small; font-weight: bolder; max-width: 100%; overflow-x: auto;"
+                            class="bg-o-color-4">***Por favor compartir el mapa de la operación&nbsp;a auditar y
+                            ubicación exacta del o los sitios a auditar***</span><span
+                            style="font-family:Roboto, &quot;Odoo Unicode Support Noto&quot;, sans-serif;font-size: small;"
+                            class="bg-o-color-4">&nbsp;</span><br></font><br><span
+                        style="font-family:Roboto, &quot;Odoo Unicode Support Noto&quot;, sans-serif;font-size: small; font-style: inherit; font-variant-caps: inherit; font-variant-ligatures: inherit; font-weight: inherit; text-align: inherit;">Cualquier
+                        duda o comentario estamos a sus órdenes, </span><br>
+                </p>
+                <p style="padding:0px;font-size: 13px;"><br></p>
+                <p style="padding:0px;font-size: 13px;"><span
+                        style="color:rgb(56, 118, 29);font-family: Roboto, &quot;Odoo Unicode Support Noto&quot;, sans-serif; font-size: small; font-weight: bolder; max-width: 100%; overflow-x: auto;"
+                        class="bg-o-color-4">Nota: Al finalizar el proceso de&nbsp;auditoría&nbsp;&nbsp;estará
+                        recibiendo una encuesta de servicio mediante un correo electrónico, ¡ayúdanos a mejorar nuestro
+                        servicio!</span><br></p>
+                &nbsp;
+            </div>
+        </font>
+    </div>
+</body>
+
+</html>
