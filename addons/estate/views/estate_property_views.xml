@@ -97,7 +97,7 @@
                 <field name="facades"/>
                 <separator/>
                 <filter string="Available" name="state" domain="['|',('state', '=', 'new'), ('state', '=', 'offer received')]"/>
-                <field name="tag" string="Tag" filter_domain="[('category_id','ilike', self)]"/>
+                <!--<field name="tag" string="Tag" filter_domain="[('category_id','ilike', self)]"/>-->
                 <group expand="1" string="Group By">
                     <filter string="Postcode" name="postcode" context="{'group_by':'postcode', 'residual_visible':True}"/>
                     <filter string="Tags" name="tag_ids" context="{'group_by':'tag_ids', 'residual_visible':True}"/>
@@ -111,10 +111,27 @@
     <record id="estate_property_action" model="ir.actions.act_window">
         <field name="name">Properties</field>
         <field name="res_model">estate.property</field>
-        <field name="view_mode">tree,form,pivot</field>
+        <field name="view_mode">tree,form,dashboard</field>
     </record>
 
-    <record id="estate_property_pivot" model="ir.ui.view">
+    <record id="estate_property_dashboard" model="ir.ui.view">
+        <field name="name">estate.property.dashboard</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <dashboard string="Properties Analysis">
+                <view type="graph" ref="sale_report.view_order_product_graph"/>
+                <group string="Sale">
+                    <aggregate name="best_price" field="best_price" widget="monetary"/>
+                    <aggregate name="name" field="name" string="Orders"/>
+                    <formula name="best_price_average" string=" Best Price Average" value="record.best_price / record.name" widget="percentage"/>
+                </group>
+                <view type="pivot" ref="sale_report.view_order_product_pivot"/>
+            </dashboard>
+        </field>
+    </record>
+
+    <!--
+         <record id="estate_property_dashboard" model="ir.ui.view">
         <field name="name">estate.property.pivot</field>
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
@@ -124,7 +141,6 @@
             </pivot>
         </field>
     </record>
-
-
+    -->
 
 </odoo>
