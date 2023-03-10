@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="auditor_audits_progress_view_tree" model="ir.ui.view">
+        <field name="name">auditor.audits.progress.tree</field>
+        <field name="model">auditor.audits.progress</field>
+        <field name="arch" type="xml">
+            <tree string="Progreso de Auditores">
+                <field name="auditor_id"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="audits_number"/>
+                <field name="audits_target"/>
+                <field name="progress_bar" widget="progressbar"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="auditor_audits_progress_view_form" model="ir.ui.view">
+        <field name="name">auditor_audits_progress_form</field>
+        <field name="model">auditor.audits.progress</field>
+        <field name="arch" type="xml">
+            <form string="Progreso de Auditor">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="auditor_id"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+
+                        </group>
+                        <group>
+                            <field name="audits_number"/>
+                            <field name="audits_target"/>
+                            <field name="progress_bar" widget="progressbar"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="auditor_audits_progress_action" model="ir.actions.act_window">
+        <field name="name">Auditor Progress</field>
+        <field name="res_model">auditor.audits.progress</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="auditor_audits_progress" name= "Auditor Progress" parent="purchase.menu_procurement_management" action="auditor_audits_progress_action" sequence="21"/>
+
+</odoo>
