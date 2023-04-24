@@ -1,4 +1,5 @@
 from odoo import models,fields,api
+from odoo.exceptions import UserError
 from logging import getLogger
 from dateutil.relativedelta import relativedelta
 from datetime import *
@@ -37,20 +38,25 @@ class EstatePropertyOffer(models.Model):
                 delta= record.date_deadline-created
                 record.validity= delta.days
                 _logger.error("--------------------------- validity -> "+str(record.validity)+" delta from create_date -> "+str(delta)+"-------------------------------------")
-    
-    '''        else:
-                now = date.today# current date and time 
-                delta= record.date_deadline-now
-                record.validity= delta.days
-                
-                _logger.error("--------------------------- validity -> "+str(record.validity)+" delta from now -> "+str(delta)+"-------------------------------------")
 
+    @api.depends("property_id.offer_ids","property_id.buyer","property_id.selling_price")
+    def action_accept(self):
+        self.status="accepted"
+        self.property_id.buyer = self.partner_id
+        self.property_id.selling_price = self.price
 
-    @api.onchange('invoice_payed')
-    def _check_change(self):
-        if self.invoice_payed:
-            date_1= (datetime.strptime(self.invoice_payed, '%Y-%m-%d')+relativedelta(days =+ 42))
+        for offer in self.property_id.offer_ids:
+            if not offer.id == self.id:
+                offer.status = "refused"
 
-            self.pay_date =date_1
-'''
-    
+        return True
+        
+    def action_refuse(self):
+        if self.status == "accepted":
+            
+            self.status = "refused"
+            self.property_id.buyer = None
+            self.property_id.selling_price = 0
+
+        return True
+

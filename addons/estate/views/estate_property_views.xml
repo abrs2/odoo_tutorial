@@ -23,6 +23,10 @@
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
             <form string="Properties">
+                <header>
+                    <button name="action_do_sold" type="object" string="SOLD"/>
+                    <button name="action_do_cancel" type="object" string="CANCEL"/>
+                </header>
                 <sheet>
                     <h1>
                         <field name="name"/>
@@ -35,6 +39,7 @@
 
                     <group>
                         <group>
+                            <field name="state"/>
                             <field name="property_type_id"/>
                             <field name="postcode"/>
                             <field name="date_availability"/>
@@ -43,8 +48,8 @@
                             <field name="expected_price"/>
                             <field name="best_price"/>
                             <field name="selling_price"/>
-                            <field name="state"/>
-                            <field name="active"/>
+                            <!--<field name="state"/>
+                            <field name="active"/>-->
                         </group>
                         <group>
                             <notebook>
@@ -111,9 +116,10 @@
     <record id="estate_property_action" model="ir.actions.act_window">
         <field name="name">Properties</field>
         <field name="res_model">estate.property</field>
-        <field name="view_mode">tree,form,dashboard</field>
+        <field name="view_mode">tree,form</field>
     </record>
 
+    <!--
     <record id="estate_property_dashboard" model="ir.ui.view">
         <field name="name">estate.property.dashboard</field>
         <field name="model">estate.property</field>
@@ -129,7 +135,7 @@
             </dashboard>
         </field>
     </record>
-
+    -->
     <!--
          <record id="estate_property_dashboard" model="ir.ui.view">
         <field name="name">estate.property.pivot</field>

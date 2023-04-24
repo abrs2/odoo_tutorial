@@ -2,6 +2,7 @@
 from datetime import date
 from dateutil.relativedelta import relativedelta
 from odoo import models,fields,api
+from odoo.exceptions import UserError, ValidationError
 
 def dateInThreeMonths():
     now= date.today()
@@ -36,12 +37,12 @@ class EstateProperty(models.Model):
     total_area = fields.Integer("Total Area(sqm)",compute="_compute_area",readonly=True)
     garden_orientation = fields.Selection(
         string='Garden Orientation',
-        selection=[('please choose one','Please Choose One'),('north','North'), ('south','South'), ('east','East'),('west', 'West')],
+        selection=[('north','North'), ('south','South'), ('east','East'),('west', 'West')],
         help="Garden Orientation is used to indicate where the garden is", default= 'please choose one',
         )    
     active= fields.Boolean('Active',default=True) 
     state = fields.Selection(
-        string='State',
+        string='Status',
         selection=[('new','New'),('offer received','Offer Received'), ('offer accepted','Offer Accepted'),
         ('sold','Sold'), ('canceled','Canceled')],
         copy=False,required=True,default='new',
@@ -68,7 +69,64 @@ class EstateProperty(models.Model):
                     best_price= offer.price
             
             record.best_price = best_price
+    
+    @api.onchange('garden')
+    def _onchange_garden(self):
+        if self.garden:
+            self.garden_area = 10
+            self.garden_orientation = 'north'
 
+        else:
+            self.garden_area = 0
+            self.garden_orientation = ''
+
+        return {"warning":{
+            'title':("Warning"),
+            'message':("Ha cambiado el area y orientacion del jardin")}}
+
+    def action_do_sold(self):
+        allow = False
+
+        if not self.state == 'canceled':
+            self.state = 'sold'
+            allow=True
+
+        if not allow:
+
+            raise UserError("You are not allowed to set a canceled property as sold")
+
+        return True
+
+    def action_do_cancel(self):
+        
+        allow = False
+
+        if not self.state == 'sold':
+            self.state = 'canceled'
+            allow=True
+
+        if not allow:
             
+            raise UserError("You are not allowed to set a sold property as canceled")
+
+        return True
+
+    """
+    @api.constrains('expected_price')
+    def _check_expected_price(self):
+
+        for record in self:
+            if record.expected_price <1:
+                raise ValidationError("Expected price cannot be zero or a negative number")
+
+    @api.constrains('selling_price')
+    def _check_selling_price(self):
+
+        for record in self:
+            if record.expected_price <1:
+                raise ValidationError("Expected price cannot be zero or a negative number")
+
+    
+    """
             
 
