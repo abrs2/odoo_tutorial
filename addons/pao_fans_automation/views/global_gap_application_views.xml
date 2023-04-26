@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="global_gap_application_view_tree" model="ir.ui.view">
+        <field name="name">pao.global.gap.application.tree</field>
+        <field name="model">pao.global.gap.application</field>
+        <field name="arch" type="xml">
+            <tree string="Channel">
+                <field name="plNumber"/>
+                <field name="ggn"/>
+                <field name="version"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="global_gap_application_view_form" model="ir.ui.view">
+        <field name="name">pao.global.gap.application.form</field>
+        <field name="model">pao.global.gap.application</field>
+        <field name="arch" type="xml">
+            <form string="Global G.A.P. Applications">
+                <!--
+                <header>
+                    <button name="action_do_sold" type="object" string="SOLD"/>
+                    <button name="action_do_cancel" type="object" string="CANCEL"/>
+                </header>
+                -->
+                <sheet>
+                    <!--
+                    <h1>
+                        <field name="name"/>
+                    </h1>
+                    <div>
+                        <a>
+                            <field name="tag_ids" widget="many2many_tags"/>
+                        </a>
+                    </div>
+                    -->
+                    <group>
+                        <group>
+                            <field name="plNumber"/>
+                            <field name="ggn"/>
+                            <field name="version"/>
+                        </group>
+                        <!--
+                        <group>
+                            <field name="expected_price"/>
+                            <field name="best_price"/>
+                            <field name="selling_price"/>
+                            <field name="state"/>
+                            <field name="active"/>
+                        </group>
+                        
+                        <group>
+                            <notebook>
+                                <page string="Description">
+                                    <group>
+                                        <field name="description"/>
+                                        <field name="bedrooms"/>
+                                        <field name="living_area"/>
+                                        <field name="facades"/>
+                                        <field name="garage"/>
+                                        <field name="garden"/>
+                                        <field name="garden_area"/>
+                                        <field name="garden_orientation"/>
+                                        <field name="total_area"/>
+                                    </group>
+                                </page>
+                                <page string="Offers">
+                                    <group>
+                                        <field name="offer_ids"/>
+                                    </group>
+                                </page>
+                                <page string="Other Info">
+                                    <group>
+                                        <field name="salesMan"/>
+                                        <field name="buyer"/>
+                                    </group>
+                                </page>
+                            </notebook>
+                        </group>
+                        -->
+
+                    </group>
+
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="global_gap_application_search" model="ir.ui.view">
+        <field name="name">pao.global.gap.application.search</field>
+        <field name="model">pao.global.gap.application</field>
+        <field name="arch" type="xml">
+            <search string="Application">
+                <field name="plNumber"/>
+                <field name="ggn"/>
+                <field name="version"/>
+
+                <!--
+                <field name="expected_price"/>
+                <field name="bedrooms"/>
+                <field name="living_area"/>
+                <field name="facades"/>
+                <separator/>
+                <filter string="Available" name="state" domain="['|',('state', '=', 'new'), ('state', '=', 'offer received')]"/>
+                <group expand="1" string="Group By">
+                    <filter string="Postcode" name="postcode" context="{'group_by':'postcode', 'residual_visible':True}"/>
+                    <filter string="Tags" name="tag_ids" context="{'group_by':'tag_ids', 'residual_visible':True}"/>
+                </group>
+                -->
+            </search>
+        </field>
+    </record>
+
+    <record id="global_gap_application_action" model="ir.actions.act_window">
+        <field name="name">Global G.A.P. Applications</field>
+        <field name="res_model">pao.global.gap.application</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="pao_global_gap_applications_menu" name= "Global GAP" parent="pao_fans_automation.menu_pao_applications" action="global_gap_application_action" sequence="0" />
+</odoo>
