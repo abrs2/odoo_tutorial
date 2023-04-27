@@ -9,42 +9,34 @@
 </head>
 
 <body>
-    <table
-        style="padding-top:16px;background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #000000; width: 100%; border-collapse:separate;"
-        cellspacing="0" cellpadding="0" border="0">
+    <table style="padding-top:16px;background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #000000; width: 100%; border-collapse:separate;" cellspacing="0" cellpadding="0" border="0">
         <tbody>
             <tr>
                 <td align="center">
-                    <table style="padding:16px;background-color: white; color: #000000; border-collapse:separate;"
-                        width="590" cellspacing="0" cellpadding="0" border="0">
+                    <table style="padding:16px;background-color: white; color: #000000; border-collapse:separate;" width="590" cellspacing="0" cellpadding="0" border="0">
                         <tbody>
                             <!-- HEADER -->
                             <tr>
                                 <td style="min-width:590px;" align="center">
-                                    <table
-                                        style="min-width:590px;background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;"
-                                        width="590" cellspacing="0" cellpadding="0" border="0">
+                                    <table style="min-width:590px; padding: 0px 8px 0px 8px; border-collapse:separate;" width="590" cellspacing="0" cellpadding="0" border="0">
                                         <tbody>
                                             <tr>
                                                 <td valign="middle">
                                                     <span style="font-size:10px;">
                                                     </span>
                                                     <br>
-                                                    <span style="font-size:20px;">
+                                                    <span style="font-size:20px;text-align: justify;">
                                                         <b>Verificación de disponibilidad (RA)</b>
                                                     </span>
                                                     <br>
                                                 </td>
                                                 <td valign="middle" align="right">
-                                                    <img src="/logo.png"
-                                                        style="padding:0px;margin: 0px; height: auto; width: 80px;"
-                                                        alt="logo">
+                                                    <img src="/logo.png" style="padding:0px;margin: 0px; height: auto; width: 80px;" alt="logo">
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="2" style="text-align:center;">
-                                                    <hr style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"
-                                                        width="100%">
+                                                    <hr style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;" width="100%">
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -55,23 +47,20 @@
                             <tr>
                                 <td style="min-width:590px;" align="center">
 
-                                    <table
-                                        style="min-width:590px;background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;"
-                                        width="590" cellspacing="0" cellpadding="0" border="0">
-                                        <tbody>
+                                    <table style="min-width:590px;background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;" width="590" cellspacing="0" cellpadding="0" border="0">
+                                        <tbody style="text-align: justify;">
                                             <tr>
                                                 <td valign="top">
-                                                    <div>
-                                                        Este correo no representa una confirmación del servicio de auditoría y <b>no sustituye</b> la
-                                                         asignación que se emite directamente desde las <b>plataformas de auditoría correspondiente (Azzule o SEDEX).</b>
+                                                    <div style="color:blue ;">
+                                                        Este correo no representa una confirmación del servicio de auditoría y <b>no sustituye</b>&nbsp;la
+                                                        &nbsp;asignación&nbsp;que se emite directamente desde las&nbsp;<b>plataformas de auditoría correspondiente (Azzule o SEDEX).</b>
                                                         <br>
                                                         <br>
                                                     </div>
                                                     <div>
-                                                        Estimado ${object.partner_id.name},<br><br>
+                                                        Estimado(a) ${object.partner_id.name},<br><br>
                                                         <div>Por medio de este correo solicitamos la confirmación de su
-                                                            disponibilidad para las siguientes</div><span
-                                                            style="text-align:inherit;">auditorías</span>: <br>
+                                                            disponibilidad para las siguientes auditorías:</div> <br>
                                                     </div>
                                                     <div style="display:table;">
                                                         <div style="display:table-header-group;">
@@ -127,8 +116,6 @@
                                                                 <div style="display:table-cell;width:400px;"><b>Especialista de Operaciones:
                                                                     </b>${object.coordinator_id.name or 'N/A'}
                                                                 </div>
-                                                                <br>
-                                                                <br>
                                                             </font>
                                                         </div>
 
@@ -194,12 +181,10 @@
                                                     <div style="margin:16px 0px 16px 0px;">
                                                         % set access_token = object.get_confirmation_access_token()
                                                         <br>
-                                                        <a href="/confirm/${access_token}/1"
-                                                            style="background-color:#875A7B;padding: 8px 16px 8px 16px; margin: 10px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
+                                                        <a href="/confirm/${access_token}/1" style="background-color:#875A7B;padding: 8px 16px 8px 16px; margin: 10px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
                                                             Aceptar
                                                         </a>
-                                                        <a href="/confirm/${access_token}/2"
-                                                            style="background-color:#875A7B;padding: 8px 16px 8px 16px; margin: 10px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
+                                                        <a href="/confirm/${access_token}/2" style="background-color:#875A7B;padding: 8px 16px 8px 16px; margin: 10px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
                                                             Declinar
                                                         </a>
                                                         <br><br>
@@ -212,7 +197,7 @@
                                                         cuenta con disponibilidad.
                                                         <br><br>
                                                         Quedamos a sus órdenes para cualquier duda relacionada con la 
-                                                        presente en el correo electrónico  <a href = "mailto:auditmx@pao-mx.com">auditmx@pao-mx.com </a> o 
+                                                        presente en el correo electrónico&nbsp;&nbsp;<a href="mailto:auditmx@pao-mx.com">auditmx@pao-mx.com </a>&nbsp;o 
                                                         directamente con su Especialista de Operaciones.
                                                     </div>
 
@@ -222,8 +207,7 @@
 
                                             <tr>
                                                 <td style="text-align:center;">
-                                                    <hr style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"
-                                                        width="100%">
+                                                    <hr style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;" width="100%">
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -233,9 +217,7 @@
                             <!-- FOOTER -->
                             <tr>
                                 <td style="min-width:590px;" align="center">
-                                    <table
-                                        style="min-width:590px;background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;"
-                                        width="590" cellspacing="0" cellpadding="0" border="0">
+                                    <table style="min-width:590px;background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;" width="590" cellspacing="0" cellpadding="0" border="0">
                                         <tbody>
 
                                         </tbody>
@@ -249,9 +231,7 @@
             <!-- POWERED BY -->
             <tr>
                 <td style="min-width:590px;" align="center">
-                    <table
-                        style="min-width:590px;background-color: #F1F1F1; color: #000000; padding: 8px; border-collapse:separate;"
-                        width="590" cellspacing="0" cellpadding="0" border="0">
+                    <table style="min-width:590px;background-color: #F1F1F1; color: #000000; padding: 8px; border-collapse:separate;" width="590" cellspacing="0" cellpadding="0" border="0">
                         <tbody>
                             <tr>
                                 <td style="text-align:center;font-size: 13px;">

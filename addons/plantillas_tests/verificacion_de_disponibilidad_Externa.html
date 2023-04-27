@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <table
         style="padding-top:16px;background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #000000; width: 100%; border-collapse:separate;"
@@ -19,8 +21,7 @@
                             <!-- HEADER -->
                             <tr>
                                 <td style="min-width:590px;" align="center">
-                                    <table
-                                        style="min-width:590px;background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;"
+                                    <table style="min-width:590px; padding: 0px 8px 0px 8px; border-collapse:separate;"
                                         width="590" cellspacing="0" cellpadding="0" border="0">
                                         <tbody>
                                             <tr>
@@ -28,7 +29,7 @@
                                                     <span style="font-size:10px;">
                                                     </span>
                                                     <br>
-                                                    <span style="font-size:20px;">
+                                                    <span style="font-size:20px; text-align: justify;">
                                                         <b>Verificación de disponibilidad (Externa)</b>
                                                     </span>
                                                     <br>
@@ -56,20 +57,21 @@
                                     <table
                                         style="min-width:590px;background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;"
                                         width="590" cellspacing="0" cellpadding="0" border="0">
-                                        <tbody>
+                                        <tbody style="text-align: justify;">
                                             <tr>
                                                 <td valign="top">
-                                                    <div>
-                                                        Este correo no representa una confirmación del servicio de auditoría y <b>no sustituye</b> la
-                                                         asignación que se emite directamente desde las <b>plataformas de auditoría correspondiente (Azzule o SEDEX).</b>
+                                                    <div style="color:blue ;">
+                                                        Este correo no representa una confirmación del servicio de
+                                                        auditoría y <b>no sustituye</b> la
+                                                         asignación que se emite directamente desde las <b>plataformas
+                                                            de auditoría correspondiente (Azzule o SEDEX).</b>
                                                         <br>
                                                         <br>
                                                     </div>
                                                     <div>
-                                                        Estimado ${object.partner_id.name},<br><br>
+                                                        Estimado(a) ${object.partner_id.name},<br><br>
                                                         <div>Por medio de este correo solicitamos la confirmación de su
-                                                            disponibilidad para las siguientes</div><span
-                                                            style="text-align:inherit;">auditorías</span>: <br>
+                                                            disponibilidad para las siguientes auditorías:</div> <br>
                                                     </div>
                                                     <div style="display:table;">
                                                         <div style="display:table-header-group;">
@@ -122,11 +124,10 @@
                                                         <div style="display:table-row;">
                                                             <br>
                                                             <font class="text-black">
-                                                                <div style="display:table-cell;width:400px;"><b>Especialista de Operaciones:
+                                                                <div style="display:table-cell;width:400px;">
+                                                                    <b>Especialista de Operaciones:
                                                                     </b>${object.coordinator_id.name or 'N/A'}
                                                                 </div>
-                                                                <br>
-                                                                <br>
                                                             </font>
                                                         </div>
 
@@ -173,10 +174,13 @@
                                                         ${format_amount(object.amount_total, object.currency_id)}
                                                         <br>
                                                         <br>
-                                                        <font style="color:rgb(255, 0, 0);">*Los honorarios son tentativos 
-                                                            debido a que el cliente de este servicio realiza su pago de manera 
-                                                            externa, el RA de este servicio se enviará a firma de manera 
-                                                            independiente*</font>
+                                                        <font style="color:rgb(255, 0, 0);">*Los honorarios son
+                                                            tentativos
+                                                            debido a que el cliente de este servicio realiza su pago de
+                                                            manera
+                                                            externa, por lo que el RA se enviará a firma de manera
+                                                            independiente,
+                                                            favor de proceder a aceptar o declinar el servicio*</font>
                                                         <br>
                                                         <br>
                                                     </p>
@@ -192,7 +196,7 @@
                                                     <div style="margin:16px 0px 16px 0px;">
                                                         % set access_token = object.get_confirmation_access_token()
                                                         <br>
-                                                        <a href="/confirm/${access_token}/1"
+                                                        <a href="/confirm/external/audit/${access_token}/1"
                                                             style="background-color:#875A7B;padding: 8px 16px 8px 16px; margin: 10px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
                                                             Aceptar
                                                         </a>
@@ -209,8 +213,9 @@
                                                         agregue un comentario breve con los motivos por los cuales no
                                                         cuenta con disponibilidad.
                                                         <br><br>
-                                                        Quedamos a sus órdenes para cualquier duda relacionada con la 
-                                                        presente en el correo electrónico  <a href = "mailto:auditmx@pao-mx.com">auditmx@pao-mx.com </a> o 
+                                                        Quedamos a sus órdenes para cualquier duda relacionada con la
+                                                        presente en el correo electrónico  <a
+                                                            href="mailto:auditmx@pao-mx.com">auditmx@pao-mx.com </a> o
                                                         directamente con su Especialista de Operaciones.
                                                     </div>
 
@@ -264,4 +269,5 @@
         </tbody>
     </table>
 </body>
+
 </html>
