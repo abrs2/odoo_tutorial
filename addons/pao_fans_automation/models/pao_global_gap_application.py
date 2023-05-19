@@ -1,6 +1,6 @@
 from odoo import fields,models,api
 
-class GlobalGapApplication(models.Model):
+class PaoGlobalGapApplication(models.Model):
     
     _name = "pao.global.gap.application"
     _description = "PAO Global Gap Application"

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <record id="menu_aplicattion_form" model="website.menu">
+        <field name="name">Create application</field>
+        <field name="url">/application_webform</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence">11</field>
+    </record>
+
+    <template id="create_application" name="Create Application">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure">
+                    <div class="container">
+                        <form role="form" action="/create/webapplication" method="POST">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <div class="form-group">
+                                <label for="plNumber" class="control-label">PLNumber</label>
+                                <input type="text" name="plNumber" t-att-value="plNumber" id="application_plnumber" class="form-control" placeholder="e.g. 283762" required="required"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="ggn" class="control-label">GGN</label>
+                                <input type="text" name="ggn" t-att-value="ggn" id="ggn" class="form-control" placeholder="e.g. 2837378762" required="required"/>
+                            </div>
+                            <div class="clearfix oe_login_buttons">
+                                <button type="submit" class="btn btn-primary pull-left">Create Application</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <record id="application_thanks" model="website.page">
+        <field name="name">Thanks</field>
+        <field name="type">qweb</field>
+        <field name="url">/application-thank-you</field>
+        <field name="website_published">True</field>
+        <field name="key">pao_fans_automation.application_thanks</field>
+        <field name="arch" type="xml">
+            <t name="Thanks" t-name="pao_fans_automation.application_thanks">
+                <t t-call="website.layout">
+                    <div id="wrap">
+                        <div class="container">
+                            <h1>Thanks!</h1>
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <div class="alert alert-success" role="status">
+                                        Your application has been sent successfully
+                                    </div>
+                                    <p>
+                                        We will get back to you shortly
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </field>
+    </record>
+</odoo>
+
+    

@@ -1,1 +1,1 @@
-from . import GlobalGapApplication
+from . import pao_global_gap_application

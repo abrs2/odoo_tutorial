@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name':'PAO Fans Automation',
+    'name':'Custom',
     'version':'1.0',
     'author':'Abrahan Barrios',
     'category':'',
@@ -9,16 +9,12 @@
     ],
     'data':[
         #security
-        'security/ir.model.access.csv',
+        #'security/ir.model.access.csv',
         #data
         #demo
         #reports
         #views
-        'views/aplications_menus.xml',
-        'views/global_gap_application_views.xml',
-        'views/website_form.xml',
         'views/templates.xml'
-
     ],
     
 }
