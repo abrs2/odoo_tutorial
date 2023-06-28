@@ -20,6 +20,9 @@
                 <h1>
                     <field name="name"/>
                 </h1>
+                <group>
+                    <field name="offer"
+                </group>
 
             </form>
         </field>

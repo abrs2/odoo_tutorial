@@ -14,13 +14,13 @@ class GlobalGapApplication(http.Controller):
     @http.route('/create/webapplication',type="http",auth="public",website=True)
     def create_webapplication(self, **kw):
         _logger.error("------------ Data Received : "+str(kw))
-        request.env['pao.global.gap.application'].sudo().create(kw)
+        request.env['pao.global.gap.application'].create(kw)
         return request.render("pao_fans_automation.application_thanks",{})
     
-    @http.route('/application_controller/application_controller',auth='public', website=True)
+    @http.route('/application_controller/application_controller',auth='none', website=True)
     def index(self, **kw):
         try:
-            applications = http.request.env['pao.global.gap.application'].search([])
+            applications = http.request.env['pao.global.gap.application'].sudo().search([])
 
         except: 
             return "<h1> Can't access API </h1>"
@@ -29,7 +29,7 @@ class GlobalGapApplication(http.Controller):
             'applications': applications
         })
     
-    @http.route('/application_controller/<model("pao.global.gap.application"):ap>',auth='public', website=True)
+    @http.route('/application_controller/<model("pao.global.gap.application"):ap>',auth='none', website=True)
     def display_application(self,ap):
         
         return http.request.render('pao_fans_automation.applications',{

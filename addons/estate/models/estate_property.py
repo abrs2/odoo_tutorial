@@ -20,6 +20,9 @@ class EstateProperty(models.Model):
     _name = 'estate.property'
     _description = "CRM Estate Property"
 
+    _sql_constraints = [('check_expected_price','CHECK(expected_price > 0)','The expected price must be greater than 0'),
+                        ('check_property_selling_price','CHECK(selling_price >= 0)','The property selling price must be greater than or equal to 0')]
+
     name = fields.Char(string='Property Name',default="Unknown",required=True,translate=True)
     tag_ids = fields.Many2many("estate.property.tag",string="Property Tags")
     property_type_id = fields.Many2one("estate.property.type",string="Property Type")
@@ -76,13 +79,13 @@ class EstateProperty(models.Model):
             self.garden_area = 10
             self.garden_orientation = 'north'
 
+            return {"warning":{
+            'title':("Warning"),
+            'message':("Ha cambiado el area y orientacion del jardin")}}
+
         else:
             self.garden_area = 0
             self.garden_orientation = ''
-
-        return {"warning":{
-            'title':("Warning"),
-            'message':("Ha cambiado el area y orientacion del jardin")}}
 
     def action_do_sold(self):
         allow = False
