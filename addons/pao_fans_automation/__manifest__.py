@@ -5,7 +5,7 @@
     'author':'Abrahan Barrios',
     'category':'',
     'website':'https://paomx.com',
-    'depends':['sale','base','portal'
+    'depends':['sale','base','portal',
     ],
     'data':[
         #security

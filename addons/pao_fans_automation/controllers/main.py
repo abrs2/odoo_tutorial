@@ -20,7 +20,7 @@ class GlobalGapApplication(http.Controller):
     @http.route('/application_controller/application_controller',auth='none', website=True)
     def index(self, **kw):
         try:
-            applications = http.request.env['pao.global.gap.application'].sudo().search([])
+            applications = http.request.env['pao.global.gap.application'].search([])
 
         except: 
             return "<h1> Can't access API </h1>"

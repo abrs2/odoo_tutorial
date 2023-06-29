@@ -10,7 +10,7 @@
                     <div class="container">
                         <t t-foreach="applications" t-as="application">
                             <p>
-                                <a t-attf-href="/application_controller/{{ slug(application)}}">
+                                <a t-attf-href="/application_controller/{{slug(application)}}">
                                     <t t-esc="application.plNumber"/>
                                 </a>
                                 <t t-esc="application.version"/>
