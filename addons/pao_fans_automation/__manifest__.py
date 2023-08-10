@@ -17,8 +17,11 @@
         'views/aplications_menus.xml',
         'views/global_gap_application_views.xml',
         'views/website_form.xml',
-        'views/templates.xml'
+        'views/templates.xml',
+        'views/sale_order_views.xml',
+        'views/cursojavascript.xml',
 
     ],
+    'application':'True',     
     
 }
