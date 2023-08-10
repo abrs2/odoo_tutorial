@@ -21,7 +21,6 @@ class GlobalGapApplication(http.Controller):
     def index(self, **kw):
         try:
             applications = http.request.env['pao.global.gap.application'].search([])
-
         except: 
             return "<h1> Can't access API </h1>"
 
