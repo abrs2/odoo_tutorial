@@ -292,7 +292,7 @@
                                 <h3>
                                     <b>ENTIDAD LEGAL</b>
                                 </h3>
-                                
+
                                 <div class="container">
                                     <div class="column">
                                         <div class="item-entity">
@@ -385,7 +385,53 @@
                                 <p style="text-align: center;">Seleccione en el mapa el punto dónde se encuentra la entidad legal</p>
                                 <br/>
                                 <br/>
-                                <div class="container">
+                                <div style="border-radius: 25px; border: 2px solid #b9ae9f; padding: 50px;">
+                                    <head>
+                                        <script src="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js"></script>
+                                        <link href="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css" rel="stylesheet"/>
+                                    </head>
+                                    <div id="map3" style="width:100%; height:400px;"></div>
+                        
+                                    <script>
+                                        (function () {
+
+                                            // (A) INSERT ACCESS TOKEN HERE!
+
+                                            mapboxgl.accessToken = "pk.eyJ1IjoiYWJyczIiLCJhIjoiY2xsNXBmcXV0MDRreTNjdGpwMGh5ODQzcCJ9.z5jbioKMgT4Z0YhPMzJjJw";
+
+                                            // (B1) DRAW MAP
+                                            // (B1-1) THE MAP
+                                            let map = new mapboxgl.Map({
+                                                container: "map3",
+                                                style: "mapbox://styles/mapbox/streets-v11",
+                                                center: [44.1, 26.3],
+                                                zoom: 13
+                                            });
+
+                                            // (B1-2) ADD A MARKER
+                                            let marker = new mapboxgl.Marker()
+                                                .setLngLat([44.1, 26.3])
+                                                .addTo(map);
+
+                                            map.on('click', (event) => {
+                                                var coordinates = event.lngLat;
+                                                console.log('Lng:', coordinates.lng, 'Lat:', coordinates.lat);
+                                                marker.setLngLat(coordinates).addTo(map);
+                                            });
+
+                                            // (B2) ON FAILING TO GET GPS COORDINATES
+                                            err => console.error(err),
+
+                                            // (B3) GPS OPTIONS
+                                            {
+                                                enableHighAccuracy: true,
+                                                timeout: 5000,
+                                                maximumAge: 0
+                                            }
+                                        })();
+                                    </script>
+                                </div>
+                                <!--<div class="container">
                                     <div id="wrapper-9cd199b9cc5410cd3b1ad21cab2e54d3">
                                         <div id="map-9cd199b9cc5410cd3b1ad21cab2e54d3"></div>
                                         <script>(function () {
@@ -403,8 +449,8 @@
                                         </script>
                                         <a href="https://1map.com/map-embed">1 Map</a>
                                     </div>
-                                </div>
-                                
+                                </div>-->
+
 
                                 <div class="container">
                                     <div class="column">
@@ -461,8 +507,7 @@
                                     </div>
                                 </div>
 
-                                <div style="border-radius: 25px; border: 2px solid #b9ae9f; padding: 50px;">
-                                </div>
+
 
                             </div>
                             <div class="clearfix oe_login_buttons">
@@ -472,7 +517,9 @@
                         </form>
 
                     </div>
+
                 </div>
+
             </div>
         </t>
     </template>

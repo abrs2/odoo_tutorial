@@ -8,6 +8,7 @@
     <title>Document</title>
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js"></script>
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css" rel="stylesheet">
+    <!--<link src="style.css" rel="stylesheet">-->
 
 </head>
 
@@ -16,23 +17,10 @@
         <!-- Make sure you put this AFTER Leaflet's CSS -->
 
 
-        <div id="map" style="width:100%; height:400px;"></div>
-        <script>
+        <div id="map2" style="width:100%; height:400px;"></div>
+        <!--<script>
             // (A) INSERT ACCESS TOKEN HERE!
-            const { Geocoder } = await google.maps.importLibrary("geocoding");
-            var lat = '';
-            var lng = '';
-            var address = { zipcode } or { city and state };
-            geocoder.geocode({ 'address': address }, function (results, status) {
-                if (status == google.maps.GeocoderStatus.OK) {
-                    lat = results[0].geometry.location.lat();
-                    lng = results[0].geometry.location.lng();
-                });
-      } else {
-                alert("Geocode was not successful for the following reason: " + status);
-            }
-    });
-            alert('Latitude: ' + lat + ' Logitude: ' + lng);
+
 
             mapboxgl.accessToken = "pk.eyJ1IjoiYWJyczIiLCJhIjoiY2xsNXBmcXV0MDRreTNjdGpwMGh5ODQzcCJ9.z5jbioKMgT4Z0YhPMzJjJw";
 
@@ -44,14 +32,21 @@
                     let map = new mapboxgl.Map({
                         container: "map",
                         style: "mapbox://styles/mapbox/streets-v11",
-                        center: [pos.coords.longitude, pos.coords.latitude],
+                        center: [25.8, 44.5],
                         zoom: 13
                     });
 
                     // (B1-2) ADD A MARKER
                     let marker = new mapboxgl.Marker()
-                        .setLngLat([pos.coords.longitude, pos.coords.latitude])
+                        .setLngLat([25.8, 44.5])
                         .addTo(map);
+
+                    map.on('click', (event) => {
+                        var coordinates = event.lngLat;
+                        console.log('Lng:', coordinates.lng, 'Lat:', coordinates.lat);
+                        marker.setLngLat(coordinates).addTo(map);
+                    });
+
                 },
 
                 // (B2) ON FAILING TO GET GPS COORDINATES
@@ -64,6 +59,83 @@
                     maximumAge: 0
                 }
             );
+        </script>-->
+
+        <!--<script>
+            (function () {
+
+                // (A) INSERT ACCESS TOKEN HERE!
+
+                mapboxgl.accessToken = "pk.eyJ1IjoiYWJyczIiLCJhIjoiY2xsNXBmcXV0MDRreTNjdGpwMGh5ODQzcCJ9.z5jbioKMgT4Z0YhPMzJjJw";
+
+                // (B1) DRAW MAP
+                // (B1-1) THE MAP
+                let map = new mapboxgl.Map({
+                    container: "map2",
+                    style: "mapbox://styles/mapbox/streets-v11",
+                    center: [44.1, 26.3],
+                    zoom: 13
+                });
+
+                // (B1-2) ADD A MARKER
+                let marker = new mapboxgl.Marker()
+                    .setLngLat([44.1, 26.3])
+                    .addTo(map);
+
+                map.on('click', (event) => {
+                    var coordinates = event.lngLat;
+                    console.log('Lng:', coordinates.lng, 'Lat:', coordinates.lat);
+                    marker.setLngLat(coordinates).addTo(map);
+                });
+
+                // (B2) ON FAILING TO GET GPS COORDINATES
+                err => console.error(err),
+
+                // (B3) GPS OPTIONS
+                {
+                    enableHighAccuracy: true,
+                    timeout: 5000,
+                    maximumAge: 0
+                }
+            })();
+        </script>-->
+        <script>
+            (function () {
+
+                // (A) INSERT ACCESS TOKEN HERE!
+
+                mapboxgl.accessToken = "pk.eyJ1IjoiYWJyczIiLCJhIjoiY2xsNXBmcXV0MDRreTNjdGpwMGh5ODQzcCJ9.z5jbioKMgT4Z0YhPMzJjJw";
+
+                // (B1) DRAW MAP
+                // (B1-1) THE MAP
+                let map = new mapboxgl.Map({
+                    container: "map2",
+                    style: "mapbox://styles/mapbox/streets-v11",
+                    center: [44.1, 26.3],
+                    zoom: 13
+                });
+
+                // (B1-2) ADD A MARKER
+                let marker = new mapboxgl.Marker()
+                    .setLngLat([44.1, 26.3])
+                    .addTo(map);
+
+                map.on('click', (event) => {
+                    var coordinates = event.lngLat;
+                    console.log('Lng:', coordinates.lng, 'Lat:', coordinates.lat);
+                    marker.setLngLat(coordinates).addTo(map);
+                });
+
+                // (B2) ON FAILING TO GET GPS COORDINATES
+                err => console.error(err),
+
+                // (B3) GPS OPTIONS
+                {
+                    enableHighAccuracy: true,
+                    timeout: 5000,
+                    maximumAge: 0
+                }
+            })();
         </script>
 
 
