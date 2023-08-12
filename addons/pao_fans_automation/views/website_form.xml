@@ -431,25 +431,6 @@
                                         })();
                                     </script>
                                 </div>
-                                <!--<div class="container">
-                                    <div id="wrapper-9cd199b9cc5410cd3b1ad21cab2e54d3">
-                                        <div id="map-9cd199b9cc5410cd3b1ad21cab2e54d3"></div>
-                                        <script>(function () {
-                                            var setting = {"query":"Culiacán, Sinaloa, Mexico","width":800,"height":600,"satellite":false,"zoom":12,"placeId":"ChIJj_lHd8fWvIYRzCMt6_Dr2Y0","cid":"0x8dd9ebf0eb2d23cc","coords":[24.8090649,-107.3940117],"lang":"en","queryString":"Culiacán, Sinaloa, Mexico","centerCoord":[24.8090649,-107.3940117],"id":"map-9cd199b9cc5410cd3b1ad21cab2e54d3","embed_id":"976689"};
-                                            var d = document;
-                                            var s = d.createElement('script');
-                                            s.src = 'https://1map.com/js/script-for-user.js?embed_id=976689';
-                                            s.async = true;
-                                            s.onload = function (e) {
-                                            window.OneMap.initMap(setting)
-                                            };
-                                            var to = d.getElementsByTagName('script')[0];
-                                            to.parentNode.insertBefore(s, to);
-                                        })();
-                                        </script>
-                                        <a href="https://1map.com/map-embed">1 Map</a>
-                                    </div>
-                                </div>-->
 
 
                                 <div class="container">
