@@ -198,7 +198,7 @@
                             <br/>
                             <div class="container">
                                 <div class="item">
-                                    <label for="plNumber" class="control-label">PLNumber</label>
+                                    <label for="plNumber" class="control-label">PLMx-</label>
                                     <input type="text" name="plNumber" t-att-value="plNumber" id="application_plnumber" class="form-control" placeholder="e.g. 283762" required="required"/>
                                 </div>
 
@@ -265,11 +265,10 @@
 
                             <div class="container">
                                 <div class="item">
-                                    <label for="recompensas">Programa de Recompensas No Anunciadas:
-                                    (De acuerdo a las Regulaciones Generales Parte I. 5.1.2.3)</label>
+                                    <label for="modalidad">Modalidad de Auditoría</label>
                                     <select style="background: #fff; width:20%; position: absolute; margin-left: 10px;" name="recompensas" id="recompensas">
-                                        <option value="si">Si</option>
-                                        <option value="no">No</option>
+                                        <option value="anaunciada">Anunciada</option>
+                                        <option value="noAnunciada">No Anunciada</option>
                                     </select>
                                     <!--<button id="globalgapbutton">Fetch Audit Products</button>-->
                                 </div>
@@ -395,6 +394,9 @@
                                     <script>
                                         (function () {
 
+                                            let latitud = document.getElementById("application_legalEntityLatitude")
+                                            let longitud = document.getElementById("application_legalEntityLongitude")
+
                                             // (A) INSERT ACCESS TOKEN HERE!
 
                                             mapboxgl.accessToken = "pk.eyJ1IjoiYWJyczIiLCJhIjoiY2xsNXBmcXV0MDRreTNjdGpwMGh5ODQzcCJ9.z5jbioKMgT4Z0YhPMzJjJw";
@@ -417,6 +419,8 @@
                                                 var coordinates = event.lngLat;
                                                 console.log('Lng:', coordinates.lng, 'Lat:', coordinates.lat);
                                                 marker.setLngLat(coordinates).addTo(map);
+                                                document.getElementById("application_legalEntityLatitude").value = coordinates.lat;
+                                                document.getElementById("application_legalEntityLongitude").value = coordinates.lng;
                                             });
 
                                             // (B2) ON FAILING TO GET GPS COORDINATES
