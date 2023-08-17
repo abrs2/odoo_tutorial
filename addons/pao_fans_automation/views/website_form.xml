@@ -266,7 +266,7 @@
                             <div class="container">
                                 <div class="item">
                                     <label for="modalidad">Modalidad de Auditoría</label>
-                                    <select style="background: #fff; width:20%; position: absolute; margin-left: 10px;" name="recompensas" id="recompensas">
+                                    <select style="background: #fff; width:70%; position: absolute; margin-left: 10px;" name="recompensas" id="recompensas">
                                         <option value="anaunciada">Anunciada</option>
                                         <option value="noAnunciada">No Anunciada</option>
                                     </select>
@@ -302,11 +302,6 @@
                                         <div class="item-entity">
                                             <label for="legalEntityAddress">Dirección</label>
                                             <input type="text" name="legalEntityAddress" t-att-value="legalEntityAddress" id="application_legalEntityAddress" class="form-control" required="required"/>
-                                        </div>
-
-                                        <div class="item-entity">
-                                            <label for="legalEntityMaillingAddress">Dirección Postal</label>
-                                            <input type="text" name="legalEntityMaillingAddress" t-att-value="legalEntityMaillingAddress" id="application_legalEntityMaillingAddress" class="form-control" placeholder="e.g. 2837378762" required="required"/>
                                         </div>
 
                                         <div class="item-entity">
