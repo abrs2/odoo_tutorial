@@ -5,12 +5,13 @@
     'author':'Abrahan Barrios',
     'category':'',
     'website':'https://paomx.com',
-    'depends':['sale','base','portal',
+    'depends':['sale','base','portal','website','servicereferralagreement',
     ],
     'data':[
         #security
         'security/ir.model.access.csv',
         #data
+        'data/email_template.xml',
         #demo
         #reports
         #views

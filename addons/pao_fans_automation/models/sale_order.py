@@ -1,7 +1,5 @@
-
 from odoo import fields, models, api
 import logging
-
 _logger = logging.getLogger(__name__)
 
 class SaleOrder(models.Model):
@@ -45,23 +43,56 @@ class SaleOrder(models.Model):
         return action
     
 
-    @api.model
-    def action_create_global_gap_application(self, vals):
+    def action_create_global_gap_application(self):
         
         """
         Add global gap id record for particular sale order
         """
 
         global_gap_appication_id = self.env['pao.global.gap.application'].create({
-            'sale_order_id': vals[0],
+            'sale_order_id': self.id,
             'ggn': 'Test',
-            'plNumber': 'Test PL'
+            'plNumber': 'Test PL',
+            'coordinator_id': self.env.uid
             })
+    
+    def action_send_email_fans(self):
+        
+        _logger.error(
+          "------------------Metodo action send email se ejecuta -----------------------")
+      
+        '''
+        This function opens a window to compose an email, with the emai template message loaded by default
+        '''
 
-        # now you need to add above created global gap record in respective model where you need to update its one2many(i.e global_gap_appications_ids) field.
+        self.ensure_one()
+        ir_model_data = self.env['ir.model.data']
+        try:
+            template_id = \
+                ir_model_data.get_object_reference('sale_order', 'sale_order_email_fans_template')[1]
+        except ValueError:
+            template_id = False
+        try:
+            compose_form_id = ir_model_data.get_object_reference('mail', 'email_compose_message_wizard_form')[1]
+        except ValueError:
+            compose_form_id = False
+        ctx = {
+            'default_model': 'sale.order',
+            'default_res_id': self.ids[0],
+            'default_use_template': bool(template_id),
+            'default_template_id': template_id,
+            'default_composition_mode': 'comment',
+        }
 
-        self.env['sale.order'].search([("id","=",self.id)]).write({
-
-            # link to existing record with id = ID (adds a relationship)
-            'global_gap_appications_ids': [(4, global_gap_appication_id.id)]
-            })
+        return {
+            'name': 'Envío de FANS',
+            'type': 'ir.actions.act_window',
+            'view_mode': 'form',
+            'res_model': 'mail.compose.message',
+            'views': [(compose_form_id, 'form')],
+            'view_id': compose_form_id,
+            'target': 'new',
+            'context': ctx,
+        }
+        
+        

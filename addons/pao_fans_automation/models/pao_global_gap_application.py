@@ -46,7 +46,8 @@ class PaoGlobalGapApplication(models.Model):
     has_unavailable_period = fields.Boolean('Tiene periodo no disponible')
     unavailable_initial_date = fields.Date('Unavailable initial date')
     unavailable_final_date = fields.Date('Unavailable final date')
-    coordinator_id = fields.Many2one('res.partner', string='Coordinator', default=lambda self: self.env.user.id)
+    #coordinator_id = fields.Many2one('res.partner', string='Coordinator', default=lambda self: self.create_uid.id)
+    coordinator_id = fields.Many2one('res.users',string='Coordinator')
     sale_order_id = fields.Many2one('sale.order', string='Sale Order')
     status = fields.Selection(
         string= 'Status',

@@ -55,6 +55,7 @@
                             flex-direction: row;
                             justify-content: space-between
                         }
+
                         .testbox {
                         display: flex;
                         justify-content: center;
@@ -119,12 +120,16 @@
                         position: relative;
                         margin: 10px 50px 20px;
                         width:33.333%;
+                        max-width:50%;
                         
                         } 
                         
                         .item-entity {
                         margin: 10px 50px 20px;
-                        } input[type="date"]::-webkit-inner-spin-button {
+                        
+                        } 
+                        
+                        input[type="date"]::-webkit-inner-spin-button {
                         display: none;
                         }
                         .item i, input[type="date"]::-webkit-calendar-picker-indicator {
@@ -288,12 +293,15 @@
 
                             <div style="border-radius: 25px; border: 2px solid #b9ae9f;padding: 50px;">
 
+                                <script>
+
+                                </script>
                                 <h3>
                                     <b>ENTIDAD LEGAL</b>
                                 </h3>
 
                                 <div class="container">
-                                    <div class="column">
+                                    <div class="column" style="table-layout: fixed;">
                                         <div class="item-entity">
                                             <label for="legalEntityName">Nombre</label>
                                             <input type="text" name="legalEntityName" t-att-value="legalEntityName" id="application_legalEntityName" class="form-control" required="required"/>
@@ -306,9 +314,8 @@
 
                                         <div class="item-entity">
                                             <label for="legalEntityCountry">País</label>
-                                            <select style="background: #fff;" name="legalEntityCountry" id="application_legalEntityCountry">
-                                                <option value="mx">México</option>
-                                                <option value="us">Estados Unidos</option>
+                                            <select style="background: #fff;max-width: 100%;" name="legalEntityCountry" id="application_legalEntityCountry">
+                                        
                                             </select>
                                         </div>
 
@@ -436,13 +443,13 @@
                                     <div class="column">
                                         <div class="item-entity">
                                             <label for="legalEntityLatitude">Latitud</label>
-                                            <input type="text" name="legalEntityLatitude" t-att-value="legalEntityLatitude" id="application_legalEntityLatitude" class="form-control" placeholder="e.g. -23.909090938" required="required"/>
+                                            <input type="text" name="legalEntityLatitude" t-att-value="legalEntityLatitude" id="application_legalEntityLatitude" class="form-control" placeholder="e.g. -23.909090938" required="required" readonly="true"/>
                                         </div>
                                     </div>
                                     <div class="column">
                                         <div class="item-entity">
                                             <label for="legalEntityLongitude">Longitud</label>
-                                            <input type="text" name="legalEntityLongitude" t-att-value="legalEntityLongitude" id="application_legalEntityLongitude" class="form-control" placeholder="e.g. 25.909090938" required="required"/>
+                                            <input type="text" name="legalEntityLongitude" t-att-value="legalEntityLongitude" id="application_legalEntityLongitude" class="form-control" placeholder="e.g. 25.909090938" required="required" readonly="true"/>
                                         </div>
                                     </div>
                                 </div>
@@ -533,5 +540,6 @@
         </field>
     </record>
 </odoo>
+
 
     

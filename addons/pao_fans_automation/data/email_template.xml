@@ -1,26 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="sale_order_line_email_template" model="mail.template">
-        <field name="name">First email template for audits</field>
-        <field name="model_id" ref="sale.model_sale_order_line"/>
-        <field name="subject">Email Subject</field>
-        <field name="email_from">${object.create_uid.partner_id.id}</field>
-        <field name="partner_to">${object.product_template_id.contract_email}</field>
-        <field name="email_from">${object.create_uid.partner_id.id}</field>
+    <record id="sale_order_email_fans_template" model="mail.template">
+        <field name="name">Template for FANS</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="subject">Envio de Fans</field>
+        <field name="email_from"></field>
+        <!--<field name="partner_to"></field>
         <field name="auto_delete" eval="True"/>
-        <!--<field name="lang">${object.partner_id.lang}</field>-->
+        <field name="lang">${object.partner_id.lang}</field>-->
         <field name="body_html" type="xml">
-            <table>
-                <tr>
-                    <th>Name</th>
-                    <th>Registry Number</th>
-                </tr>
-                <tr>
-                    <td>${object.organization_id.name}</td>
-                    <td>${object.registrynumber_id.name}</td>
-                </tr>
-            </table>
-        </field>
-    </record>
+            <div>
+                <section>
+                    <p>Estimado/a ______________</p>
+                    <p>A través de este correo le hacemos llegar el formulario de aplicación para su auditoría
+            GLOBALG.A.P.</p>
+                    <p>Para iniciar su proceso de programación por favor, es necesario que llene lo correspondiente a las
+            secciones.</p>
+                    <p>Sección 1: Información fiscal de la organización que se auditará.</p>
+                    <p>Sección 2: Información del sitio(s) de producción y de la instalación (en caso de que la
+            manipulación ocurra en una instalación).</p>
+                    <p>Sección 3: Información general del producto(s) y países destino de exportación.</p>
 
-</odoo>
+                    <p>CONSIDERAR: Por favor no olvide indicar Sí o No para cada uno de los siguientes atributos.</p>
+                        <p>Producción Paralela (PP): aplica cuando una parte de la producción del mismo producto será certificada y otra no, es decir; sitio A de
+            arándano se certificará, mientras el sitio B de arándano no será certificado.</p>
+                        <p>Propiedad Paralela (PO): aplica cuando un productor adquiere producto no-certificado que él mismo cultiva bajo certificación.</p>
+
+                    </section>
+                </div>
+            </field>
+        </record>
+
+    </odoo>

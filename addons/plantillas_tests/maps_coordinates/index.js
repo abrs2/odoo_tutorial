@@ -14,7 +14,7 @@ function initMap() {
   
     infoWindow.open(map);
     // Configure the click listener.
-    map.addListener("click", (mapsMouseEvent) => {
+    map.addListener("click", (mapsMouseEvent) => {    Contacts
       // Close the current InfoWindow.
       infoWindow.close();
       // Create a new InfoWindow.

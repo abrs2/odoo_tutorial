@@ -4,10 +4,9 @@ class PaoAuditProductDetail(models.Model):
 
     _name = "pao.audit.product.detail"
     _description = "PAO Audit Product Detail"
-    #_rec_name = 'product_id'
-    
-    name= fields.Char("Name")
-    #product_id= fields.Many2one('servicereferralagreement.auditproducts',string="Product")
+    _rec_name = 'product_id'
+
+    product_id= fields.Many2one('servicereferralagreement.auditproducts',string="Product")
     siteHectares= fields.Float("Hectares",required=True)
     toCertificate= fields.Boolean("To Certificate",required=True)
     pp= fields.Boolean("PP",required=True)
