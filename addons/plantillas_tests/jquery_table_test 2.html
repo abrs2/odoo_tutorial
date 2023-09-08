@@ -1,0 +1,231 @@
+<html lang="en">
+
+<head>
+    <title>CRUD Table jQuery</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <script>
+        $(function () {
+            let myEmptyRow = []
+            let myButtons = {};
+
+            function getNewButtons() {
+                myButtons = {
+                    edit: [
+                        $("<button>", {
+                            class: "btn btn-success btn-sm btn-edit"
+                        }).html("Edit"),
+                        $("<button>", {
+                            class: "btn btn-danger btn-sm"
+                        }).html("Delete")
+                    ],
+                    update: [
+                        $("<button>", {
+                            class: "btn btn-success btn-sm btn-save"
+                        }).html("Update"),
+                        $("<button>", {
+                            class: "btn btn-danger btn-sm"
+                        }).html("Delete")
+                    ]
+                }
+            }
+
+            function getNewEmptyRow() {
+                myEmptyRow = [{
+                    class: "tdID",
+                    content: $("<input>", {
+                        type: "text",
+                        class: "form-control txtID"
+                    })
+                }, {
+                    class: "tdName",
+                    content: $("<input>", {
+                        type: "text",
+                        class: "form-control txtName"
+                    })
+                }, {
+                    class: "tdAddress",
+                    content: $("<input>", {
+                        type: "text",
+                        class: "form-control txtAddress"
+                    })
+                }, {
+                    class: "tdAge",
+                    content: $("<input>", {
+                        type: "text",
+                        class: "form-control txtAge"
+                    })
+                }, {
+                    class: "tdAction",
+                    content: [
+                        $("<button>", {
+                            class: "btn btn-sm btn-success btn-save"
+                        }).html("Save"),
+                        $("<button>", {
+                            class: "btn btn-sm btn-success btn-cancel"
+                        }).html("Delete")
+                    ]
+                }]
+            }
+
+            function getStore(index) {
+                console.log("Get data for " + index);
+                return JSON.parse(localStorage.getItem(index));
+            }
+
+            function saveStore(index, data) {
+                console.log("Saving Data to " + index) //, data);
+                localStorage.setItem(index, JSON.stringify(data));
+            }
+
+            function deleteStore(index) {
+                console.log("Deleting Data for " + index);
+                localStorage.removeItem(index);
+            }
+
+            function addRow(target, data, empty) {
+                debugger;
+                getNewButtons();
+                getNewEmptyRow();
+                if (target == undefined) {
+                    target = $("table:eq(0)");
+                }
+                if (empty == undefined) {
+                    empty = false;
+                }
+                if (data == null) {
+                    return false;
+                }
+                console.log("Add Row to " + target.attr("id")) //, empty);
+                if (empty && $("tbody tr").length === 0) {
+                    $("tbody", target).html("");
+                }
+                var row = $("<tr>").appendTo($("tbody", target));
+                if (data == undefined) {
+                    // Add Empty Row
+                    $("<td>", {
+                        colspan: 4,
+                        class: "text-center"
+                    }).appendTo(row);
+                } else {
+                    row.addClass("trNewRow");
+                    $.each(data, function (i, cell) {
+                        $("<td>", {
+                            class: cell.class
+                        }).append(cell.content).appendTo(row);
+                    });
+                }
+
+                //console.log(data,data.length);
+                if (data.length == 4) {
+                    $("<td>", {
+                        class: "tdAction"
+                    }).append(myButtons.edit).appendTo(row);
+                }
+                return row;
+            }
+
+            function saveRow(row) {
+                if (row == undefined) {
+                    return false;
+                }
+                getNewButtons();
+                getNewEmptyRow();
+                debugger
+                const rowData = [{
+                    class: "tdID",
+                    content: $(".txtID", row).val()
+                }, {
+                    class: "tdName",
+                    content: $(".txtName", row).val()
+                }, {
+                    class: "tdAddress",
+                    content: $(".txtAddress", row).val()
+                }, {
+                    class: "tdAge",
+                    content: $(".txtAge", row).val()
+                }];
+                $.each(rowData, function (i, c) {
+                    $("." + c.class, row).html(c.content);
+                });
+                $(".tdAction", row).html(myButtons.edit);
+                saveStore("row-" + row.index(), rowData);
+            }
+
+            function init() {
+                if (localStorage.length == 0) {
+                    addRow($("#tblData"));
+                } else {
+                    console.log("Found Local Storage. Rows: " + localStorage.length);
+                    $.each(localStorage, function (k, o) {
+                        const rowData = getStore(k);
+                        //console.log(k, rowData);
+                        addRow($("#tblData"), rowData);
+                    });
+                }
+            }
+
+            init();
+
+            $("#btnAdd").click(function () {
+                addRow($("#tblData"), myEmptyRow, myButtons, $("#tblData tbody tr td").length == 1 ? true : false);
+            });
+
+            $('#tblData').on('click', '.btn-save', function () {
+                saveRow($(this).closest("tr"));
+            });
+
+            $('#tblData').on('click', '.btn-danger, .btn-cancel', function () {
+                // registering function for delete button
+                deleteStore("row-" + $(this).closest("tr").index());
+                $(this).closest("tr").remove();
+                if ($("#tblData tbody tr").length == 0) {
+                    addRow($("#tblData "));
+                }
+            });
+
+            $('#tblData').on('click', '.btn-edit', function () {
+                const row = $(this).closest("tr");
+                $(".tdID", row).html("<input type='text' value='" + $(".tdID", row).html() + "' class='form-control txtID' />");
+                $(".tdName", row).html("<input type='text' value='" + $(".tdName", row).html() + "' class='form-control txtName' />");
+                $(".tdAddress", row).html("<input type='text' value='" + $(".tdAddress", row).html() + "' class='form-control txtAddress' />");
+                $(".tdAge", row).html("<input type='text' value='" + $(".tdAge", row).html() + "' class='form-control txtAge' />");
+                $(".tdAction", row).html(myButtons.update);
+            });
+
+        });
+    </script>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <input type="button" id="btnAdd" class="btn btn-primary para" value="Add New" />
+            </div>
+        </div>
+
+        <div class="row pt-3">
+            <div class="col-md-12 col-sm-12 col-12 p-2 ">
+                <table id="tblData" class="table table-bordered table-hover table-striped">
+                    <thead>
+                        <tr id="headings">
+                            <th class="schedule-color heading">ID</th>
+                            <th class="schedule-color heading">Name</th>
+                            <th class="schedule-color heading">Address</th>
+                            <th class="schedule-color heading">Age</th>
+                            <th class="tdaction">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="searchable">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
