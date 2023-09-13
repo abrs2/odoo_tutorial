@@ -20,5 +20,5 @@
         'views/website_form.xml',
 
     ],
-    
+    'application':'True', 
 }
