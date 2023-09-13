@@ -19,7 +19,7 @@ class WebForm(http.Controller):
             'data_line_ids': val,
         }
         form_id = request.env['web.form.test'].sudo().create(values)
-        return request.render('web_form.form_template', {})
+        return request.render('custom.form_template', {})
 
 
 
