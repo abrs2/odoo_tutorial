@@ -1,5 +1,11 @@
 <data>
 
+    <template id="assets_frontend_snippets" inherit_id="website.assets_frontend" name="Website Snippets">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/custom/static/src/js/web_form.js"></script>
+            </xpath>
+        </template>
+
     <record id="create_form" model="website.menu">
         <field name="name">Web Form</field>
         <field name="url">/submit_web_form</field>
