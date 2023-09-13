@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="web_form_test_view_tree" model="ir.ui.view">
+        <field name="name">web.form.test.tree</field>
+        <field name="model">web.form.test</field>
+        <field name="arch" type="xml">
+            <tree string="Channel">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="web_form_test_view_form" model="ir.ui.view">
+        <field name="name">web.form.test.form</field>
+        <field name="model">web.form.test</field>
+        <field name="arch" type="xml">
+            <form string="Web Forms">
+                <sheet>
+                    <h1>
+                        <field name="name"/>
+                    </h1>
+                    <group>
+                        <group>
+                            <notebook>
+                                <page string="Data Lines">
+                                    <group>
+                                        <field name="data_line_ids"/>
+                                    </group>
+                                </page>
+                            </notebook>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="web_form_test_search" model="ir.ui.view">
+        <field name="name">web.form.test.search</field>
+        <field name="model">web.form.test</field>
+        <field name="arch" type="xml">
+            <search string="Web Form">
+                <field name="name" string="Web Form Name"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="web_form_test_action" model="ir.actions.act_window">
+        <field name="name">Web Forms</field>
+        <field name="res_model">web.form.test</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <menuitem id="web_form_test_menu_root" name="Web Form Test">
+
+        <menuitem id="web_form_test_first_level_menu" name="Web Forms">
+            <menuitem id="web_form_test_menu_action" action="web_form_test_action"/>
+        </menuitem>
+
+    </menuitem>
+</odoo>

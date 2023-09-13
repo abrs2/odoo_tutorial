@@ -14,7 +14,11 @@
         #demo
         #reports
         #views
-        'views/templates.xml'
+        'views/templates.xml',
+        'views/web_form_test_views.xml',
+        'views/data_line_views.xml',
+        'views/website_views.xml',
+
     ],
     
 }
