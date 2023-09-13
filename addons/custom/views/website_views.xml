@@ -1,4 +1,4 @@
-<data noupdate="1">
+<data>
 
     <record id="create_form" model="website.menu">
         <field name="name">Web Form</field>
