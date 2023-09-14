@@ -9,7 +9,7 @@
     ],
     'data':[
         #security
-        #'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         #data
         #demo
         #reports
@@ -18,6 +18,7 @@
         'views/web_form_test_views.xml',
         'views/data_line_views.xml',
         'views/website_form.xml',
+        'views/web_form_menus.xml',
 
     ],
     'application':'True', 
