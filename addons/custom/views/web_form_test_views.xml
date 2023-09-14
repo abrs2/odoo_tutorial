@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<odoo>
+<odoo>       
 
     <record id="web_form_test_view_tree" model="ir.ui.view">
         <field name="name">web.form.test.tree</field>
@@ -51,12 +51,8 @@
         <field name="res_model">web.form.test</field>
         <field name="view_mode">tree,form</field>
     </record>
+
     
-    <menuitem id="web_form_test_menu_root" name="Web Form Test">
 
-        <menuitem id="web_form_test_first_level_menu" name="Web Forms">
-            <menuitem id="web_form_test_menu_action" action="web_form_test_action"/>
-        </menuitem>
 
-    </menuitem>
 </odoo>
